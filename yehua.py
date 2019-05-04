@@ -43,3 +43,4 @@ if __name__ == '__main__':
     urls = r.readlines()
     for url in urls:
         get_article(url)
+    r.close()
