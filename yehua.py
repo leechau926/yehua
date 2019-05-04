@@ -11,7 +11,7 @@ def get_article_list(i):
     soup = BeautifulSoup(html, 'lxml')
     sections = soup.find_all(attrs={'class': 'sectionteaser'})
     for sec in sections:
-        title = sec.h2.a.get_text()
+        title = sec.h2.a.get_text().strip('\n')
         date = sec.find(attrs={'id': 'story_date'}).string
         url = sec.h2.a['href']
         with open('article_list.txt', 'a', encoding='utf-8') as f:
@@ -39,8 +39,8 @@ def get_article(url):
 if __name__ == '__main__':
     for i in range(0, 28):
         get_article_list(i)
-    r = open('urls.txt', 'r', encoding='utf-8')
-    urls = r.readlines()
-    for url in urls:
-        get_article(url)
+#     r = open('urls.txt', 'r', encoding='utf-8')
+#     urls = r.readlines()
+#     for url in urls:
+#         get_article(url)
     r.close()
